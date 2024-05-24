@@ -1,0 +1,8 @@
+.nav-link {
+    text-decoration: none; /* Remove default underline for all nav links */
+  }
+  
+  .nav-link.active {
+    text-decoration: underline; /* Add underline only when the link is active (current page) */
+  }
+  
