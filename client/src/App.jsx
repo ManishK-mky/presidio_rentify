@@ -1,5 +1,5 @@
-import React from 'react'
-import Layout from './components/Layout/Layout'
+// import React from 'react'
+// import Layout from './components/Layout/Layout'
 import {Routes , Route} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import AboutUs from './pages/AboutUs/AboutUs'
@@ -21,6 +21,7 @@ import Orders from './pages/user/Orders'
 import Product from './pages/Admin/Product'
 import UpdateProduct from './pages/Admin/UpdateProduct';
 import ProfilePage from './pages/user/ProfilePage'
+import Singleproduct from './pages/singleproduct/Singleproduct'
 
 function App() {
 
@@ -52,7 +53,8 @@ function App() {
         <Route path="/about" element={<AboutUs/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
         <Route path="/policy" element={<Policy/>}></Route>
-        <Route path="/*" element={<PageNotFound/>}></Route>
+        <Route path="*" element={<PageNotFound/>}></Route>
+        <Route path="/singleproduct" element={< Singleproduct/>}></Route>
       </Routes>
     </>
   )
