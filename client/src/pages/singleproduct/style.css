@@ -1,0 +1,41 @@
+.pwrap{
+    display: flex;
+    padding: 30px 20px;
+    width: 70%;
+    /* background-color: blue; */
+    justify-content: space-around;
+}
+.image{
+    width:300px;
+    height:300px;
+    background-color: aqua;
+    border-radius: 5%;
+}
+.pinfo{
+    position: relative;
+}
+.pbtn{
+    position: absolute;
+    bottom: 0;
+    background-color: #f0c14b;
+    /* border: 1px solid; */
+    /* margin-top: 100px; */
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 29px;
+    padding: 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 20%;
+    border-radius: 3px;
+}
+.price{
+    /* font-size: 22px; */
+    font-weight: 700;
+    
+}

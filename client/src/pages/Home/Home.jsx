@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import axios from 'axios';
 import Checkbox from '@mui/material/Checkbox';
@@ -6,9 +6,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 // import Radio from '@mui/material/Radio';
 // import RadioGroup from '@mui/material/RadioGroup';
 // import { Prices } from '../../components/Prices';
+<<<<<<< HEAD
 import { FaHeart } from "react-icons/fa6";
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+=======
+>>>>>>> c7fcf42703295fc13418fd0f02b914b9b566cec0
 
 function Home() {
     
@@ -16,7 +19,7 @@ function Home() {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [checked, setChecked] = useState([]);
-    const [radio, setRadio] = useState([]);
+    // const [radio, setRadio] = useState([]);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -53,7 +56,7 @@ function Home() {
             setLoading(true);
             const { data } = await axios.get(`http://localhost:3000/api/v1/product/product-list/${page}`);
             setLoading(false);
-            setProducts((prevProducts) => [...prevProducts, ...data?.products]);
+            setProducts((prevProducts) => [...prevProducts, ...(data?.products || [])]);
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -78,12 +81,12 @@ function Home() {
     };
 
     useEffect(() => {
-        if (!checked.length && !radio.length) {
+        if (!checked.length ) {
             getAllProducts();
         } else {
             getFilteredProducts();
         }
-    }, [checked, radio]);
+    }, [checked]);
 
     // Get total products count
     const getTotal = async () => {
@@ -109,7 +112,7 @@ function Home() {
     // Get filtered products
     const getFilteredProducts = async () => {
         try {
-            const { data } = await axios.post('http://localhost:3000/api/v1/product/product-filters', { checked, radio });
+            const { data } = await axios.post('http://localhost:3000/api/v1/product/product-filters', { checked});
             setProducts(data?.products);
         } catch (error) {
             console.log(error);
@@ -120,7 +123,7 @@ function Home() {
 
     return (
         <Layout>
-            <div className="row">
+            <div className="row p-4">
                 <div className="col-md-3">
                     <h6 className="text-center">Filter By Category</h6>
                     <div className="d-flex flex-column">
@@ -133,6 +136,10 @@ function Home() {
                             />
                         ))}
                     </div>
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> c7fcf42703295fc13418fd0f02b914b9b566cec0
                     <div className="d-flex flex-column">
                         <button
                             className="btn btn-danger"
