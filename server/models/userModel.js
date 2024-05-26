@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
     role : {
         type : Number , 
         default : 0
+    },
+    like : {
+        type : Boolean,
+        default : false
     }
 } , {
     timestamps : true}

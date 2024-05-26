@@ -30,7 +30,7 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <TbBrandZhihu style={{ color: "orangered", fontSize: "30px", marginRight: "12px" }} />
-          <Link to="/" className="navbar-brand" href="#">e-commerce</Link>
+          <Link to="/" className="navbar-brand" href="#">Rentify</Link>
           <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink  to="/" className="nav-link" >Home</NavLink>

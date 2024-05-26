@@ -21,6 +21,8 @@ import Orders from './pages/user/Orders'
 import Product from './pages/Admin/Product'
 import UpdateProduct from './pages/Admin/UpdateProduct';
 import ProfilePage from './pages/user/ProfilePage'
+import ProductDetails from './pages/user/ProductDetails'
+
 
 function App() {
 
@@ -31,6 +33,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
+        <Route path="/product/:slug" element=<ProductDetails/>></Route>
         {/* Protected routes in REACT */}
         <Route path="/profile" element={<ProfilePage/>}></Route>
         <Route path="/dashboard" element={<PrivateRoute />}>
@@ -45,7 +48,9 @@ function App() {
           <Route path="admin/product/:slug" element={<UpdateProduct/>}></Route>
           <Route path="admin/products" element={<Product/>}></Route>
           <Route path="admin/users" element={<Users/>}></Route>
+          {/* <Route path="admin/profile" element={<SellerProfile/>}></Route> */}
         </Route>
+        {/* <Route path="/dashboard/admin/profile" element={<SellerProfile/>}></Route> */}
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/forgot-password" element={<ForgotPassword/>}></Route>

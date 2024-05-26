@@ -4,49 +4,66 @@ const  fs = require("fs");
 const { log } = require("console");
 
 // controller for creating the product
-async function createProductController(req,res){
-    try{
-        const {name , slug , description , price , category , quantity , shipping} = req.fields //becz we are using formidable for uplaoding an image
-        const {photo} = req.files;
+async function createProductController(req, res) {
+    try {
+        const { name, description, price, category, location } = req.fields; // fields parsed by formidable
+        const { photo } = req.files;
 
-        switch(true){
-            case !name:
-                return res.status(500).send({error : "Name is required"})
-            case !description:
-                return res.status(500).send({error : "Description is required"})
-            case !price:
-                return res.status(500).send({error : "Price is required"})
-            case !category:
-                return res.status(500).send({error : "Category is required"})
-            case !quantity:
-                return res.status(500).send({error : "Quantity is required"}) 
-            case photo && photo.size>1000000:
-                return res.status(500).send({error : "Photo is required and should be less than 1mb"})
-            }
-
-        const products = new productModel({...req.fields , slug:slugify(name)});
-        if(photo){
-            products.photo.data = fs.readFileSync(photo.path);
-            products.photo.contentType = photo.type
+        // Validation
+        if (!name) {
+            return res.status(400).send({ error: "Name is required" });
+        }
+        if (!description) {
+            return res.status(400).send({ error: "Description is required" });
+        }
+        if (!price) {
+            return res.status(400).send({ error: "Price is required" });
+        }
+        if (!category) {
+            return res.status(400).send({ error: "Category is required" });
+        }
+        if (!location) {
+            return res.status(400).send({ error: "Location is required" });
+        }
+        if (photo && photo.size > 1000000) {
+            return res.status(400).send({ error: "Photo should be less than 1MB" });
         }
 
-        await products.save();
-        res.status(200).send({
-            success  : true,
-            error : "Product Created Successfully",
-            products
-        })
+        const slug = slugify(name); // Slugify the name
 
-    }catch(error){
-        console.log(error);
+        // Create new product instance
+        const newProduct = new productModel({
+            name,
+            slug,
+            description,
+            price,
+            category,
+            location
+        });
+
+        // If photo is uploaded, save photo data to product
+        if (photo) {
+            newProduct.photo.data = fs.readFileSync(photo.path);
+            newProduct.photo.contentType = photo.type;
+        }
+
+        // Save the product to the database
+        await newProduct.save();
+
+        res.status(201).send({
+            success: true,
+            message: "Product created successfully",
+            product: newProduct
+        });
+    } catch (error) {
+        console.error(error);
         res.status(500).send({
-            success :  false,
-            mmessage : "Error in creating new product",
-            error
-        })
+            success: false,
+            message: "Error in creating new product",
+            error: error.message
+        });
     }
 }
-
 // get all products
 
 async function getProductController(req,res) {
@@ -95,7 +112,7 @@ async function getSingleProductController(req,res){
 async function productPhotoController(req,res){
     try{
         const product = await productModel.findById(req.params.pid).select("photo");
-
+        // console.log(product);
         if(product.photo.data){
             res.set("Content-type" , product.photo.contentType)
             return res.status(200).send(product.photo.data)
@@ -129,7 +146,7 @@ async function deleteProductController(req,res){
 
 async function updateProductController(req,res){
     try{
-        const {name , description , price , category , quantity , shipping} = req.fields //becz we are using formidable for uplaoding an image
+        const {name , description , price , category  , location} = req.fields //becz we are using formidable for uplaoding an image
         const {photo} = req.files;
 
         switch(true){
@@ -141,8 +158,8 @@ async function updateProductController(req,res){
                 return res.status(500).send({error : "Price is required"})
             case !category:
                 return res.status(500).send({error : "Category is required"})
-            case !quantity:
-                return res.status(500).send({error : "Quantity is required"}) 
+            case !location:
+                return res.status(500).send({error : "location is required"})
             case photo && photo.size>1000000:
                 return res.status(500).send({error : "Photo is required and should be less than 1mb"})
             }
@@ -247,7 +264,7 @@ const productCountController = async (req, res) => {
   // product list base on page
 const productListController = async (req, res) => {
     try {
-      const perPage = 2;
+      const perPage = 3;
       const page = req.params.page ? req.params.page : 1;
       const products = await productModel
         .find({})

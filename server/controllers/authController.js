@@ -151,7 +151,7 @@ async function forgotPasswordController(req,res){
             })
         }
 
-        console.log(user);
+        // console.log(user);
         const hashedPassword = await bcrypt.hash(newPassword , 10);
 
         await userModel.findByIdAndUpdate(user._id , {password : hashedPassword})
@@ -175,5 +175,6 @@ function testRoute(req,res){
     console.log("protected route");
     res.send("protected routes")
 }
+
 
 module.exports = {register , login , forgotPasswordController , testRoute}

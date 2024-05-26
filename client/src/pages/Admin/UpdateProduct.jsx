@@ -17,8 +17,8 @@ const UpdateProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [shipping, setShipping] = useState("");
+  const [location, setLocation] = useState("");
+  // const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
 
@@ -34,8 +34,8 @@ const UpdateProduct = () => {
         setId(product._id);
         setDescription(product.description);
         setPrice(product.price);
-        setQuantity(product.quantity);
-        setShipping(product.shipping);
+        setLocation(product.location);
+        // setShipping(product.shipping);
         setCategory(product.category._id);
       } else {
         toast.error(data.message);
@@ -76,7 +76,7 @@ const UpdateProduct = () => {
       productData.append("name", name);
       productData.append("description", description);
       productData.append("price", price);
-      productData.append("quantity", quantity);
+      productData.append("location", location);
       photo && productData.append("photo", photo);
       productData.append("category", category);
 
@@ -198,13 +198,13 @@ const UpdateProduct = () => {
               <div className="mb-3">
                 <input
                   type="text"
-                  value={quantity}
-                  placeholder="Write a quantity"
+                  value={location}
+                  placeholder="Write the Location"
                   className='form-control'
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <select
                   value={shipping}
                   onChange={(e) => setShipping(e.target.value)}
@@ -214,7 +214,7 @@ const UpdateProduct = () => {
                   <option value="0">Yes</option>
                   <option value="1">No</option>
                 </select>
-              </div>
+              </div> */}
               <div className="mb-3">
                 <button className='btn btn-primary' onClick={handleUpdate}>UPDATE PRODUCT</button>
               </div>

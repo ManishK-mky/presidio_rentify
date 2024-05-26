@@ -34,4 +34,6 @@ router.get("/product-count", productController.productCountController);
 //product per page
 router.get("/product-list/:page", productController.productListController);
 
+
+
 module.exports = router;

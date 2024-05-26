@@ -22,17 +22,15 @@ const productModel = new mongoose.Schema({
         ref : "Category",  //referencing to Category model
         required : true
     },
-    quantity : {
-        type : Number,
-        required : true,
+    location : {
+        type:String,
+        required : true  
     },
     photo : {
         data : Buffer,
         contentType : String 
-    },
-    shipping : {
-        type : Boolean  
     }
+    
 }, {
     timestamps : true}
 )

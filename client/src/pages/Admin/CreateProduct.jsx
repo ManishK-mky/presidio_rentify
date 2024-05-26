@@ -7,69 +7,70 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { useNavigate } from 'react-router-dom';
-// impirt {useNavigate}
+import { useAuth } from '../../Context/auth';
 
 function CreateProduct() {
 
+    const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
 
     const [categories, setCategories] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [shipping, setShipping] = useState("");
+    const [location, setLocation] = useState("");
     const [photo, setPhoto] = useState("");
     const [category, setCategory] = useState("");
+    // const [createdBy , setCreatedBy] = useState({});
 
-    // get all category
+    // console.log(auth);
+    // useEffect(() => {
+    //     setCreatedBy(auth?.user);
+    // }, [auth]);
+
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3000/api/v1/category/get-category")
+            const { data } = await axios.get("http://localhost:3000/api/v1/category/get-category");
             
             if (data?.success) {
                 setCategories(data?.category);
             }
         } catch (error) {
             console.log(error);
-            toast.error("something went wrong in getting category")
+            toast.error("Something went wrong while getting categories");
         }
     };
 
     useEffect(() => {
         getAllCategory();
-    }, [])
+    }, []);
 
-    // create product function
-
-    const handleCreate = async (e) =>{
+    const handleCreate = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const productData = new FormData();
-
-            productData.append("name" , name);
-            productData.append("description" , description);
-            productData.append("price" , price);
-            productData.append("quantity" , quantity);
-            productData.append("photo" , photo);
-            productData.append("category" , category);
+            productData.append("name", name);
+            productData.append("description", description);
+            productData.append("price", price);
+            productData.append("location", location);
+            productData.append("photo", photo);
+            productData.append("category", category);
+            // productData.append("createdBy", createdBy._id);
             
-            const {data} = axios.post("http://localhost:3000/api/v1/product/create-product" , productData);
+            const { data } = await axios.post("http://localhost:3000/api/v1/product/create-product", productData);
             
-            if(data?.success){
-                toast.success("Product Created Successfully");
-                navigate('/dashboard/admin/product')
-            }else{
-                toast.error(data?.message)
+            if(data?.success) {
+                toast.success("Product created successfully");
+                navigate('/dashboard/admin/products');
+            } else {
+                toast.error(data?.message);
             }
-        }catch(error){
+        } catch (error) {
             console.log(error);
-            toast.error("something went wrong")
+            toast.error("Something went wrong");
         }
     }
-
-
 
     return (
         <Layout>
@@ -81,15 +82,14 @@ function CreateProduct() {
                     <div className="col-md-9">
                         <h1>Create Product</h1>
                         <div className="m-1 w-75">
+                            <InputLabel>Select a category</InputLabel>
                             <Select
-                                onChange={(e) => {setCategory(e.target.value)}}
+                                onChange={(e) => setCategory(e.target.value)}
                                 fullWidth
                                 variant="outlined"
-
+                                value={category}
                             >
-                                <MenuItem value="" disabled>
-                                    Select a category
-                                </MenuItem>
+                                <MenuItem value="" disabled>Select a category</MenuItem>
                                 {categories.map((c) => (
                                     <MenuItem key={c._id} value={c._id}>{c.name}</MenuItem>
                                 ))}
@@ -100,7 +100,6 @@ function CreateProduct() {
                                     <input type="file" name="photo" accept="image/*" onChange={(e) => setPhoto(e.target.files[0])} hidden />
                                 </label>
                             </div>
-                                {/* Seeing OR Previewing the image */}
                             <div className="mb-3">
                                 {photo && (
                                     <div className="text-center">
@@ -108,29 +107,20 @@ function CreateProduct() {
                                     </div>
                                 )}
                             </div>
-
                             <div className="mb-3">
-                                <input type="text" bordered={false} value={name} placeholder="write a name" className='form-control' onChange={(e) => setName(e.target.value)}/>
+                                <input type="text" value={name} placeholder="Write a name" className='form-control' onChange={(e) => setName(e.target.value)}/>
                             </div>
                             <div className="mb-3">
-                                <input type="text" value={description} placeholder="write a description" className='form-control'  onChange={(e) => setDescription(e.target.value)}/>
+                                <input type="text" value={description} placeholder="Write a description" className='form-control'  onChange={(e) => setDescription(e.target.value)}/>
                             </div>
                             <div className="mb-3">
-                                <input type="text" value={price} placeholder="write a Price" className='form-control'  onChange={(e) => setPrice(e.target.value)}/>
+                                <input type="text" value={price} placeholder="Enter the price" className='form-control'  onChange={(e) => setPrice(e.target.value)}/>
                             </div>
                             <div className="mb-3">
-                                <input type="text" value={quantity} placeholder="write a Quantity" className='form-control' onChange={(e) => setQuantity(e.target.value)}/>
+                                <input type="text" value={location} placeholder="Enter the location" className='form-control' onChange={(e) => setLocation(e.target.value)}/>
                             </div>
                             <div className="mb-3">
-                                <select value={shipping} onChange={(e) => setShipping(value)} className='form-control'>
-                                    <option value="" disabled>Select shipping</option>
-                                    <option value="0">Yes</option>
-                                    <option value="1">No</option>
-                                    {/* Add more shipping options as needed */}
-                                </select>
-                            </div>
-                            <div className="mb-3">
-                                <button className='btn btn-primary' onClick={handleCreate}>CREATE PRODUCT</button>
+                                <button className='btn btn-primary' onClick={handleCreate}>Create Product</button>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,113 @@
+/* Style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-top: 20px;
+}
+
+.pwrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.pimmg {
+    flex: 1 1 50%;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.pinfo {
+    flex: 1 1 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ptitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.pprice {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.pdesc {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.pbtn {
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pbtn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .pwrap {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .pimmg, .pinfo {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .image {
+        max-width: 100%;
+        max-height: 300px;
+    }
+
+    .image img {
+        max-width: 100%;
+        max-height: 300px;
+    }
+}

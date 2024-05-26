@@ -18,7 +18,8 @@ function AdminDashboard() {
             <div className="admin-card">
               <h5 className="card-title">Seller Information</h5>
               <div className="card-content">
-                <p><strong>Seller Name:</strong> {auth?.user?.firstname}</p>
+                <p><strong>Seller First Name:</strong> {auth?.user?.firstname}</p>
+                <p><strong>Seller Last Name:</strong> {auth?.user?.lastname}</p>
                 <p><strong>Seller Email:</strong> {auth?.user?.email}</p>
                 <p><strong>Seller Contact:</strong> {auth?.user?.phone}</p>
               </div>
