@@ -6,12 +6,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 // import Radio from '@mui/material/Radio';
 // import RadioGroup from '@mui/material/RadioGroup';
 // import { Prices } from '../../components/Prices';
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import { FaHeart } from "react-icons/fa6";
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-=======
->>>>>>> c7fcf42703295fc13418fd0f02b914b9b566cec0
 
 function Home() {
     
@@ -136,10 +134,6 @@ function Home() {
                             />
                         ))}
                     </div>
-<<<<<<< HEAD
-=======
-                    
->>>>>>> c7fcf42703295fc13418fd0f02b914b9b566cec0
                     <div className="d-flex flex-column">
                         <button
                             className="btn btn-danger"
