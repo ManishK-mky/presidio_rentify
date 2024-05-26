@@ -61,9 +61,9 @@ function Header() {
                 </li>
               </>
             )}
-            <li className="">
+            {/* <li className="">
               <NavLink to="/cart" className="nav-link" >cart(0)</NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>

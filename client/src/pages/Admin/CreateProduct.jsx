@@ -120,7 +120,7 @@ function CreateProduct() {
                                 <input type="text" value={location} placeholder="Enter the location" className='form-control' onChange={(e) => setLocation(e.target.value)}/>
                             </div>
                             <div className="mb-3">
-                                <button className='btn btn-primary' onClick={handleCreate}>Create Product</button>
+                                <button className='btn btn-primary' onClick={handleCreate}>Create Property</button>
                             </div>
                         </div>
                     </div>

@@ -61,17 +61,16 @@ async function register(req, res) {
 
 async function login(req, res) {
     try {
-        const { email, password } = req.body;
+        const { email, password, firstName, lastName, phone } = req.body;
 
-        if (!email || !password) {
+        if (!email || !password || !firstName || !lastName || !phone) {
             return res.status(400).json({
                 success: false,
-                message: 'Email and password are required'
+                message: 'Required Input fields'
             });
         }
 
-        const user = await User.findOne({ email }); //db mein user ko find kar rhe hai using email becz email is unique
-        console.log(user);
+        const user = await User.findOne({ email }); // Find the user in the database by email
         if (!user) {
             return res.status(404).json({
                 success: false,
@@ -88,23 +87,45 @@ async function login(req, res) {
             });
         }
 
-        //token
+        // Verify that firstName, lastName, and phone match
+        if (user.first_name !== firstName) {
+            return res.status(401).json({
+                success: false,
+                message: 'First name does not match'
+            });
+        }
 
+        // Check last name
+        if (user.last_name !== lastName) {
+            return res.status(401).json({
+                success: false,
+                message: 'Last name does not match'
+            });
+        }
+
+        // Check phone number
+        if (user.phone !== phone) {
+            return res.status(401).json({
+                success: false,
+                message: 'Phone number does not match'
+            });
+        }
+
+        // Generate a token
         const token = await jwt.sign({ _id: user._id }, 'its-my-ninja-way', { expiresIn: '7d' });
-        console.log(token);
-        
+
         res.status(200).json({
             success: true,
             message: 'Login successful',
-            user : {
-                firstname : user.first_name,
-                lastname : user.last_name,
-                email : user.email,
-                phone : user.phone ,
-                address : user.address,
-                role : user.role
+            user: {
+                firstname: user.first_name,
+                lastname: user.last_name,
+                email: user.email,
+                phone: user.phone,
+                address: user.address,
+                role: user.role
             },
-            token  //sending the token to frontend so that , it can fonud that which user is loggedin
+            token // Sending the token to the frontend so that it can identify which user is logged in
         });
     } catch (error) {
         console.log(error);
@@ -114,6 +135,7 @@ async function login(req, res) {
         });
     }
 }
+
 
 // FORGOT PASSWORD
 

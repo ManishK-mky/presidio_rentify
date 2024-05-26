@@ -56,6 +56,7 @@ function App() {
         <Route path="/about" element={<AboutUs/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
         <Route path="/policy" element={<Policy/>}></Route>
+        <Route path="/logout" element={<Home/>}></Route>
         <Route path="*" element={<PageNotFound/>}></Route>
       </Routes>
     </>
