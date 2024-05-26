@@ -12,7 +12,7 @@ function Product() {
     // get all products
     async function getAllProducts() {
         try {
-            const { data } = await axios.get("http://localhost:3000/api/v1/product/get-product");
+            const { data } = await axios.get("https://presidio-rentify.onrender.com/api/v1/product/get-product");
             setProduct(data.products);
         } catch (error) {
             console.log(error);
@@ -39,7 +39,7 @@ function Product() {
                         {products?.map((p) => (
                             <Link key={p._id} to={`/dashboard/admin/product/${p.slug}`} className="product-link">
                                 <div className="card m-3" style={{ width: '18rem' }}>
-                                    <img src={`http://localhost:3000/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} />
+                                    <img src={`https://presidio-rentify.onrender.com/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} />
                                     <div className="card-body">
                                         <h5 className="card-title">{p.name}</h5>
                                         <p className="card-text">{p.description}</p>

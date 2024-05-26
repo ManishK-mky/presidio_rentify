@@ -23,7 +23,7 @@ function Login() {
 
         try {
             const res = await axios.post(
-                "http://localhost:3000/api/v1/login",
+                "https://presidio-rentify.onrender.com/api/v1/login",
                 { email, password, firstName, lastName, phone }
             );
 

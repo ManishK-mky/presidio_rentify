@@ -32,7 +32,7 @@ function CreateCategory() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post("http://localhost:3000/api/v1/category/create-category", { name });
+            const { data } = await axios.post("https://presidio-rentify.onrender.com/api/v1/category/create-category", { name });
             if (data.success) {
                 toast.success(`${name} is created`);
                 getAllCategory();
@@ -48,7 +48,7 @@ function CreateCategory() {
     // get all categories
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3000/api/v1/category/get-category")
+            const { data } = await axios.get("https://presidio-rentify.onrender.com/api/v1/category/get-category")
             if (data?.success) {
                 setCategories(data?.category);
             }
@@ -67,7 +67,7 @@ function CreateCategory() {
         e.preventDefault();
 
         try {
-            const { data } = await axios.put(`http://localhost:3000/api/v1/category/update-category/${selected._id}`, { name: updatedName });
+            const { data } = await axios.put(`https://presidio-rentify.onrender.com/api/v1/category/update-category/${selected._id}`, { name: updatedName });
 
             if (data.success) {
                 toast.success(`${updatedName} is updated`);
@@ -88,7 +88,7 @@ function CreateCategory() {
     // Delete Category
     const handleDelete = async (pID) => {
         try {
-            const { data } = await axios.delete(`http://localhost:3000/api/v1/category/delete-category/${pID}`, { name: updatedName });
+            const { data } = await axios.delete(`https://presidio-rentify.onrender.com/api/v1/category/delete-category/${pID}`, { name: updatedName });
 
             if (data.success) {
                 toast.success(`Category is Deleted`);

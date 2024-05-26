@@ -24,7 +24,7 @@ function ForgotPassword() {
 
         try{
             const res = await axios.post(
-                "http://localhost:3000/api/v1/forgot-password" , 
+                "https://presidio-rentify.onrender.com/api/v1/forgot-password" , 
                 { email , newPassword ,
                 answer}
             );

@@ -23,6 +23,7 @@ import UpdateProduct from './pages/Admin/UpdateProduct';
 import ProfilePage from './pages/user/ProfilePage';
 import ProductDetails from './pages/user/ProductDetails'
 
+
 function App() {
 
   // ---->  /dashboard pe jab koi redirect hoga tab woh phle PrivateRoute ko check karega

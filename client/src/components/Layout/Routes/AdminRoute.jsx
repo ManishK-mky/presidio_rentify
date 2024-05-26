@@ -22,7 +22,7 @@ function AdminRoute() {
 
     useEffect(() => {
         const authCheck = async() => {
-            const res = await axios.get('http://localhost:3000/api/v1/admin-auth')
+            const res = await axios.get('https://presidio-rentify.onrender.com/api/v1/admin-auth')
             if(res.data.ok){
                 setOk(true)
             }else{

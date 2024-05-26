@@ -22,7 +22,7 @@ function PrivateRoute() {
 
     useEffect(() => {
         const authCheck = async() => {
-            const res = await axios.get('http://localhost:3000/api/v1/user-auth')
+            const res = await axios.get('https://presidio-rentify.onrender.com/api/v1/user-auth')
             if(res.data.ok){
                 setOk(true)
             }else{

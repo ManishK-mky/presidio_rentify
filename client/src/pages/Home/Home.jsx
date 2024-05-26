@@ -27,7 +27,7 @@ function Home() {
     // Get all categories
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3000/api/v1/category/get-category");
+            const { data } = await axios.get("https://presidio-rentify.onrender.com/api/v1/category/get-category");
             if (data?.success) {
                 setCategories(data?.category);
             }
@@ -52,7 +52,7 @@ function Home() {
     const loadMore = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get(`http://localhost:3000/api/v1/product/product-list/${page}`);
+            const { data } = await axios.get(`https://presidio-rentify.onrender.com/api/v1/product/product-list/${page}`);
             setLoading(false);
             setProducts((prevProducts) => [...prevProducts, ...(data?.products || [])]);
         } catch (error) {
@@ -65,7 +65,7 @@ function Home() {
     const getAllProducts = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get(`http://localhost:3000/api/v1/product/product-list/1`);
+            const { data } = await axios.get(`https://presidio-rentify.onrender.com/api/v1/product/product-list/1`);
             console.log(data.products);
             // setLikes(data)
             setLoading(false);
@@ -89,7 +89,7 @@ function Home() {
     // Get total products count
     const getTotal = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3000/api/v1/product/product-count");
+            const { data } = await axios.get("https://presidio-rentify.onrender.com/api/v1/product/product-count");
             setTotal(data?.total);
         } catch (error) {
             console.log(error);
@@ -110,7 +110,7 @@ function Home() {
     // Get filtered products
     const getFilteredProducts = async () => {
         try {
-            const { data } = await axios.post('http://localhost:3000/api/v1/product/product-filters', { checked});
+            const { data } = await axios.post('https://presidio-rentify.onrender.com/api/v1/product/product-filters', { checked});
             setProducts(data?.products);
         } catch (error) {
             console.log(error);
@@ -151,7 +151,7 @@ function Home() {
                                 <div key={p._id} className="product-link">
                                     <div className="card m-3" style={{ width: '18rem' }}>
                                         <img
-                                            src={`http://localhost:3000/api/v1/product/product-photo/${p._id}`}
+                                            src={`https://presidio-rentify.onrender.com/api/v1/product/product-photo/${p._id}`}
                                             className="card-img-top"
                                             alt={p.name}
                                         />

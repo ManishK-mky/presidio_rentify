@@ -25,7 +25,7 @@ const UpdateProduct = () => {
   console.log(id);
   const getSingleProduct = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/v1/product/single-product/${params.slug}`);
+      const { data } = await axios.get(`https://presidio-rentify.onrender.com/api/v1/product/single-product/${params.slug}`);
       
       if (data?.success) {
         const product = data.product;
@@ -54,7 +54,7 @@ const UpdateProduct = () => {
   // Get all categories
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/v1/category/get-category");
+      const { data } = await axios.get("https://presidio-rentify.onrender.com/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -87,7 +87,7 @@ const UpdateProduct = () => {
       }
       
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/product/update-product/${id}`,
+        `https://presidio-rentify.onrender.com/api/v1/product/update-product/${id}`,
         productData
       );
 
@@ -109,7 +109,7 @@ const UpdateProduct = () => {
     try {
       let answer = window.prompt("Are you sure you want to delete this product?");
       if (!answer) return;
-      const { data } = await axios.delete(`http://localhost:3000/api/v1/product/delete-product/${id}`);
+      const { data } = await axios.delete(`https://presidio-rentify.onrender.com/api/v1/product/delete-product/${id}`);
       toast.success("Product Deleted Successfully");
       navigate("/dashboard/admin/products");
     } catch (error) {
@@ -164,7 +164,7 @@ const UpdateProduct = () => {
                   </div>
                 ):
                 <div className="text-center">
-                    <img src={`http://localhost:3000/api/v1/product/product-photo/${id}`} alt="product_photo" height={"200px"} className='img img-responsive' />
+                    <img src={`https://presidio-rentify.onrender.com/api/v1/product/product-photo/${id}`} alt="product_photo" height={"200px"} className='img img-responsive' />
                   </div>
                   }
               </div>

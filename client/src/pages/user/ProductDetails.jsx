@@ -20,7 +20,7 @@ function ProductDetails() {
     // console.log(product);
     const getProduct = async () =>{
         try{
-            const {data} = await axios.get(`http://localhost:3000/api/v1/product/single-product/${params.slug}`)
+            const {data} = await axios.get(`https://presidio-rentify.onrender.com/api/v1/product/single-product/${params.slug}`)
             // console.log(data?.product);
             setProduct(data?.product)
         }catch(error){
@@ -51,7 +51,7 @@ function ProductDetails() {
                     <div className="image">
                    {
                     product._id &&  <img
-                        src={`http://localhost:3000/api/v1/product/product-photo/${product._id}`}
+                        src={`https://presidio-rentify.onrender.com/api/v1/product/product-photo/${product._id}`}
                         className="card-img-top"
                         alt={product.name}
                                         /> 
